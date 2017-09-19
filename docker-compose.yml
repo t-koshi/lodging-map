@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres:9.4
+    image: camptocamp/postgis:9.4
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
@@ -10,7 +10,7 @@ services:
     build: .
     depends_on:
       - db
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: docker-compose run  --rm --service-ports web bundle exec rails s -b 0.0.0.0
     ports:
       - "3000:3000"
     volumes:
